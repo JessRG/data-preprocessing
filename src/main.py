@@ -21,3 +21,13 @@ imputer = SimpleImputer(missing_values=np.nan, strategy='mean')
 imputer.fit(X[:, 1:3])
 X[:, 1:3] = imputer.transform(X[:, 1:3])
 print(X)
+print()
+
+# Encoding categorical data
+
+# Encoding the Independent variable
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import OneHotEncoder
+ct = ColumnTransformer(transformers=[('encoder', OneHotEncoder(), [0])], remainder='passthrough')
+X = np.array(ct.fit_transform(X)) # this needs to be a numpy array for future ML models
+print(X)
